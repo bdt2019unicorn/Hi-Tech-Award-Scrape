@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <p><button onclick="ScrapeData()">Scrape data</button></p>
+
+
+        <footer>
+
+            <script>
+                function ScrapeData()
+                {
+                    var url = "https://www.hitech.org.nz/awards/finalists/"; 
+                    var finalists_page = AjaxRequest("get",url); 
+                    console.log(finalists_page); 
+                }
+            </script>
+
+            <script>
+                function AjaxRequest(method,url,data={})
+                {
+                    var ajax = null; 
+                    $.ajax
+                    (
+                        {
+                            url: url,
+                            data: data, 
+                            method: method, 
+                            async: false, 
+                            success: function(success)
+                            {
+                                console.log("success"); 
+                                ajax = success; 
+                            }, 
+                            error: function(error)
+                            {
+                                console.log("error"); 
+                                ajax = error; 
+                            }
+                        }
+                    );
+                    return ajax; 
+                }
+            </script>
+
+        </footer>
+    </body>
+</html>
